@@ -77,12 +77,6 @@ void setup() {
   for (int i = 0; i < roundedx+1; i++) {
     for (int j = 0; j < roundedy+1; j++) {
       if (red(logo.get(gap * i,gap * j)) > 100) grid.add(new Grid(gap*i, gap*j, dotSize, gridSpring));
-      else if (red(logo.get(gap * i + (gap/4),gap * j)) == 255) grid.add(new Grid(gap*i + (gap/4), gap * j, dotSize, gridSpring));
-      else if (red(logo.get(gap*i, gap * j + (gap/4))) == 255) grid.add(new Grid(gap*i, gap * j + (gap/4), dotSize, gridSpring));
-      else if (red(logo.get(gap*i + (gap/2), gap * j)) == 255) grid.add(new Grid(gap*i + (gap/2), gap * j, dotSize, gridSpring));
-      else if (red(logo.get(gap*i, gap * j + (gap/2))) == 255) grid.add(new Grid(gap*i, gap * j + (gap/2), dotSize, gridSpring));
-      else if (red(logo.get(gap*i + (gap/4*3), gap * j)) == 255) grid.add(new Grid(gap*i + (gap/4*3), gap * j, dotSize, gridSpring));
-      else if (red(logo.get(gap*i, gap * j + (gap/4*3))) == 255) grid.add(new Grid(gap*i, gap * j + (gap/4*3), dotSize, gridSpring));
     }
   }
   
