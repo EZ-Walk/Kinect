@@ -68,6 +68,47 @@ void draw() {
 
   //get the skeletons as an Arraylist of KSkeletons
   ArrayList<KSkeleton> skeletonArray =  kinect.getSkeletonDepthMap();
+  
+    ArrayList<KSkeleton> skeletonArray =  kinect.getSkeletonDepthMap();
+
+  if(skeletonArray.size() != gravity.size() / 3)
+  {
+    int counter = 0;
+    while(skeletonArray.size() > gravity.size() / 3)
+      for(int i = 0; i < 3; i++) gravity.add( new Point(new PVector(width/4, height/4), 20, 5000) );
+    while(skeletonArray.size() > gravity.size() / 3)
+      for(int i = 0; i < 3; i++) gravity.remove(gravity.size()-1);
+  }
+
+  //individual joints
+  for (int i = 0; i < skeletonArray.size(); i++) {
+    KSkeleton skeleton = (KSkeleton) skeletonArray.get(i);
+    //if the skeleton is being tracked compute the skleton joints
+    if (skeleton.isTracked()) {
+      KJoint[] joints = skeleton.getJoints();
+
+      //color col  = skeleton.getIndexColor();
+      //fill(col);
+      //stroke(col);
+
+      drawBody(joints);
+      int index = i * 3;
+      drawHandState(joints[KinectPV2.JointType_HandRight], gravity.get(index));
+      drawHandState(joints[KinectPV2.JointType_HandLeft], gravity.get(index + 1));
+      drawHandState(joints[KinectPV2.JointType_Head], gravity.get(index + 2));
+      
+      //if(drawing)
+      //{
+      //  line[0] = (int)joints[KinectPV2.JointType_HandRight].getX();
+      //  line[1] = (int)joints[KinectPV2.JointType_HandRight].getY();
+      //  addToLines();
+      //  line[2] = (int)joints[KinectPV2.JointType_HandRight].getX();
+      //  line[3] = (int)joints[KinectPV2.JointType_HandRight].getY();
+      //  stroke(255);
+      //}
+      //drawLines();
+    }
+  }
 
   //individual joints
   for (int i = 0; i < skeletonArray.size(); i++) {
